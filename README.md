@@ -21,10 +21,18 @@ The variants noted for Networkx are fun and easy to play around with, and I woul
 ## ImageMagick (optional)
 
 ImageMagick is a useful tool for converting multiple images / frames into a GIF. I installed it on my Mac using Homebrew:
-`brew install imagemagick`
+
+  `brew install imagemagick`
+
 but it can also be installed on other machines—have a look [here](https://imagemagick.org/script/download.php) for instructions.
 
-Once ImageMagick is installed, if you navigate to the directory where BFS.py is stored on your computer and, after having run BFS.py, type `magick convert -delay 50 graph*.png bfs.gif` into your command line, it will create a GIF animation from the  images output by BFS.py.
+**Using the tool**
+
+1. Navigate to the directory where BFS.py is stored on your computer
+1. Run BFS.py once
+1. Type into your command line: `magick convert -delay 50 graph*.png bfs.gif`
+
+This should create a GIF animation from the images output by BFS.py, and store it in the same folder.
 
 ## Releases
 
