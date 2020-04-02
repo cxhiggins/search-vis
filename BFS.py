@@ -5,40 +5,44 @@ import time
 
 def gen_bfs_graph():
 
-    plt.ion()
-    plt.figure(figsize=(5,5))
-
+    # Plot Initialization
+    plt.ion()                   # makes plot interactive
+    plt.figure(figsize=(5,5))   # squares plot
     node_size = 1000
+
+    # Graph setup
     G = nx.erdos_renyi_graph(10, 0.15, directed=True)
     pos = nx.circular_layout(G)
     # Note: many other types of layouts are supported, including
     #       kamada_kawai_layout
     
-    d = [] # d[v] = num edges in shortest path from source to v
-    p = [] # p[v] = predecessor in shortest path from source to v
-    x = [] # x[v] = [u | u in G.nodes, d[u] = v]
-    l = len(list(G)) # num nodes in G
-    i = 0  # frame number
+    d = []              # d[v] = num edges in shortest path from source to v
+    p = []              # p[v] = predecessor in shortest path from source to v
+    x = []              # x[v] = [u | u in G.nodes, d[u] == v]
+    y = [[]]            # y[w] = [(u,v) | (u,v) in G.edges, d[v] == l, d[u] == w] := edges from all nodes of dist w to undiscovered nodes
+    l = len(list(G))    # num nodes in G
+    i = 0               # frame number
     
-    def update_graph(color, nodes):
-        nx.draw_networkx_nodes(G, nodelist=nodes, node_color=color, node_size=node_size, pos=pos, with_labels=True)
-
+    def update_graph(nodes=G.nodes, edges=G.edges, nodecolor='#d1f1ff', edgecolor='black'):
+        nx.draw_networkx(G, nodelist=nodes, node_color=nodecolor, node_size=node_size, edgelist=edges, edge_color=edgecolor, pos=pos, with_labels=True)
+        
     def save_image():
         plt.savefig("graph"+str(i)+".png")
 
     for node in G:
-        d.append(l)
-        # max len of shortest path in G is l-1
-        # d[v] = l means v isn't reachable from source
-        p.append(-1)
-        # -1 is used to specify that a node doesn't have a predecessor
+        d.append(l)     # d[v] = l means v isn't reachable from source
+        p.append(-1)    # p[v] = -1 means v has no predecessor
         x.append([])
-        
-    # 0 is the specified starting node
-    d[0] = 0     
+        y.append([])
+    d[0] = 0            # 0 is the specified starting node
+
+    # Graphics
+
+    # Initial graph drawing, all nodes undiscovered
     nx.draw(G, node_color='#d1f1ff', node_size=node_size, pos=pos, with_labels=True)
     save_image()  
 
+    # Run BFS, adding nodes and edges to x and y appropriately
     q = queue.Queue(0)
     q.put(0) # start from node 0
     while not q.empty():
@@ -47,18 +51,22 @@ def gen_bfs_graph():
         
         for v in G[u]:
             if d[v] == l:
+                y[d[u]+1].append((u,v))
                 d[v] = d[u] + 1
                 p[v] = u
                 q.put(v)
 
-    lastnodes = []
-    for nodes in x:
+    # Iterate through x and y simultaneously, updating graph and saving frames
+    lastnodes = []; lastedges = []
+    for i in range(l):
+        nodes = x[i]
         if not nodes == []:
             i+=1
-            update_graph('#69d1ff', nodes)
+            update_graph(nodes, lastedges, '#69d1ff', '#69d1ff')
             save_image()
         lastnodes = nodes
-        update_graph('#1e7da5', lastnodes)
+        update_graph(lastnodes, lastedges, '#1e7da5', 'black')
+        lastedges = y[i]
     save_image()  
 
 def main():
