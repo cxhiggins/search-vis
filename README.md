@@ -7,9 +7,12 @@ The Design and Analysis of Algorithms course that I am taking discusses various 
 ![BFS Visualization on Randomly Generated Graph](/bfs.gif)
 *BFS Visualization Software*
 
+## Usage
+This visualization software can be run in Python 3 by calling the `main()` function. There are some additional libraries required, as detailed in the following section.
+
 ## Dependencies
 
-This project was built using Python libraries including:
+This project was built using Python 3 libraries including:
 
 * [Matplotlib](https://matplotlib.org/) for visualization
 * [Networkx](https://networkx.github.io/) for graph generation
@@ -36,5 +39,5 @@ This should create a GIF animation from the images output by BFS.py, and store i
 
 ## Releases
 
-So far, I have only developed visualization software for BFS, but others should be coming soon!
+So far, I have only developed visualization software for BFS and DFS, but others should be coming soon!
 
