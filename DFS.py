@@ -9,7 +9,6 @@ def gen_dfs_graph():
     plt.figure(figsize=(10,10))   # squares plot
     node_size = 500
     num_nodes = 10
-    max_digits = math.ceil(math.log(num_nodes, 10))
 
     # Graph setup
     G = nx.erdos_renyi_graph(num_nodes, 2/num_nodes, directed=True)
@@ -24,6 +23,7 @@ def gen_dfs_graph():
     time = 0
     i = 0               # frame number
     l = len(list(G))    # num nodes in G
+    max_digits = math.ceil(math.log(1+num_nodes*3+2*len(list(G.edges)), 10))
     
     def update_graph(nodes=[], edges=[], nodecolor='#d1f1ff', edgecolor='black'):
         nx.draw_networkx(G, nodelist=nodes, node_color=nodecolor, node_size=node_size, edgelist=edges, edge_color=edgecolor, pos=pos, with_labels=True)
@@ -47,7 +47,6 @@ def gen_dfs_graph():
     save_image()  
 
     # Run DFS
-
     def dfs_visit(x):
         nonlocal time
         time += 1
@@ -68,12 +67,13 @@ def gen_dfs_graph():
         time += 1
         colour[x] = "black"
         update_graph([x], nodecolor='#1e7da5')
+        save_image()
         f[x] = time
-        if p[x] == -1:
-            save_image()
 
     for node in G.nodes:
         if colour[node] == "white":
+            update_graph([node], nodecolor='#f7c8cd')
+            save_image()
             dfs_visit(node)  
 
 def main():
