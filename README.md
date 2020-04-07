@@ -41,5 +41,5 @@ This should create a GIF animation from the images output by BFS.py, and store i
 
 So far, I have only developed visualization software for BFS and DFS, but others should be coming soon!
 
-![DFS Visualization on Randomly Generated Graph](/dfs1.gif =400x400)
+![DFS Visualization on Randomly Generated Graph](/dfs1.gif)
 *DFS Visualization Software*
