@@ -1,18 +1,33 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+<<<<<<< HEAD
 import queue
 import time
+=======
+import queue, time, math
+>>>>>>> Initial commit of Visualization folder
 
 def gen_bfs_graph():
 
     # Plot Initialization
     plt.ion()                   # makes plot interactive
+<<<<<<< HEAD
     plt.figure(figsize=(5,5))   # squares plot
     node_size = 1000
 
     # Graph setup
     G = nx.erdos_renyi_graph(10, 0.15, directed=True)
     pos = nx.circular_layout(G)
+=======
+    plt.figure(figsize=(10,10))   # squares plot
+    node_size = 500
+    num_nodes = 100
+    max_digits = math.ceil(math.log(num_nodes, 10))
+
+    # Graph setup
+    G = nx.erdos_renyi_graph(num_nodes, 2/num_nodes, directed=True)
+    pos = nx.kamada_kawai_layout(G)
+>>>>>>> Initial commit of Visualization folder
     # Note: many other types of layouts are supported, including
     #       kamada_kawai_layout
     
@@ -27,7 +42,11 @@ def gen_bfs_graph():
         nx.draw_networkx(G, nodelist=nodes, node_color=nodecolor, node_size=node_size, edgelist=edges, edge_color=edgecolor, pos=pos, with_labels=True)
         
     def save_image():
+<<<<<<< HEAD
         plt.savefig("graph"+str(i)+".png")
+=======
+        plt.savefig("graph"+str(i).zfill(max_digits)+".png")
+>>>>>>> Initial commit of Visualization folder
 
     for node in G:
         d.append(l)     # d[v] = l means v isn't reachable from source
