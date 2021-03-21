@@ -4,7 +4,8 @@
 
 The Design and Analysis of Algorithms course that I am taking discusses various graph search algorithms. Some examples of these algorithms include BFS (breadth-first search), DFS (depth-first search), Dijkstra's, and Bellman Ford's. I have created programs that visualize these search algorithms on randomly generated graphs, to make it easier to conceptualize what the algorithms do.
 
-![BFS Visualization on Randomly Generated Graph](/bfs.gif)
+<img src="/Users/cara/Downloads/oxford/Trinity2020/search-vis/bfs.gif" alt="BFS Visualization on Randomly Generated Graph" style="zoom:50%;" />
+
 *BFS Visualization Software*
 
 ## Usage
@@ -32,14 +33,12 @@ but it can also be installed on other machines—have a look [here](https://imag
 **Using the tool**
 
 1. Navigate to the directory where BFS.py is stored on your computer
-1. Run BFS.py once
-1. Type into your command line: `magick convert -delay 50 graph*.png bfs.gif`
-
-This should create a GIF animation from the images output by BFS.py, and store it in the same folder.
+1. Run BFS.py using the command `python -m BFS`. This will create an animation `test.gif` with the results of running BFS on a random graph.
 
 ## Releases
 
 So far, I have only developed visualization software for BFS and DFS, but others should be coming soon!
 
-![DFS Visualization on Randomly Generated Graph](/dfs1.gif)
+<img src="/Users/cara/Downloads/oxford/Trinity2020/search-vis/dfs1.gif" alt="DFS Visualization on Randomly Generated Graph" style="zoom:50%;" />
 *DFS Visualization Software*
+

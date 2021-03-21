@@ -78,3 +78,8 @@ def gen_dfs_graph():
 
 def main():
     gen_dfs_graph()
+    os.system("magick convert -delay 50 graph*.png test.gif")
+    os.system("rm graph*.png")
+
+if __name__ == "__main__":
+    main()
